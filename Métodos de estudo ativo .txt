@@ -1,11 +1,11 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manual do Protagonista</title>
+    <title>Manual do Protagonista - Metodologias</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Cinzel:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -17,17 +17,23 @@
             background-color: var(--dark-bg);
             color: #ffffff;
             font-family: 'Montserrat', sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
         .font-alice { font-family: 'Cinzel', serif; }
+        
         .glass {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
+            background: #1a1d24; /* Fundo sólido conforme imagens */
+            border-radius: 30px;
+            padding: 40px;
         }
+        
         .tab-content { display: none; }
-        .tab-content.active { display: block; animation: fadeIn 0.5s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        .tab-content.active { display: block; animation: fadeIn 0.4s ease-out; }
+        
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(10px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
         
         .step-badge {
             background: var(--neon-blue);
@@ -43,32 +49,216 @@
             flex-shrink: 0;
         }
 
+        .hack-item {
+            background: #252932;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 12px;
+        }
+
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: var(--dark-bg); }
-        ::-webkit-scrollbar-thumb { background: var(--neon-blue); border-radius: 10px; }
+        .btn-active {
+            background-color: #2563eb !important; /* blue-600 */
+            color: white !important;
+            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+        }
     </style>
 </head>
 <body class="pb-32">
 
-    <!-- Header -->
-    <header class="p-10 text-center border-b border-white/10 mb-8 bg-black/40 sticky top-0 z-50 backdrop-blur-md">
-        <h1 class="font-alice text-3xl text-blue-400 drop-shadow-[0_0_15px_rgba(76,201,240,0.6)] uppercase tracking-tighter">Assumindo o Protagonismo</h1>
-        <p class="text-[10px] text-pink-500 uppercase tracking-[0.5em] mt-3 font-bold">Domine seu aprendizado. Domine seu futuro.</p>
-    </header>
+<header class="p-10 text-center border-b border-white/10 mb-8 bg-black/40 sticky top-0 z-50 backdrop-blur-md">
+    <h1 class="font-alice text-3xl text-blue-400 uppercase tracking-wider">Assumindo o Protagonismo</h1>
+    <p class="text-[10px] text-pink-500 uppercase mt-3 font-extrabold tracking-[0.3em]">Domine seu aprendizado. Domine seu futuro.</p>
+</header>
 
-    <main class="px-6 max-w-2xl mx-auto">
+<main class="px-6 max-w-2xl mx-auto">
+
+    <!-- Navegação -->
+    <div class="flex gap-3 mb-10 overflow-x-auto pb-4 no-scrollbar">
+        <button onclick="showTab(event, 'feynman')" class="tab-btn bg-white/5 text-white/50 px-6 py-3 rounded-full text-[10px] font-black uppercase whitespace-nowrap">Feynman</button>
+        <button onclick="showTab(event, 'pomodoro')" class="tab-btn bg-white/5 text-white/50 px-6 py-3 rounded-full text-[10px] font-black uppercase whitespace-nowrap">Pomodoro</button>
+        <button onclick="showTab(event, 'flashcards')" class="tab-btn bg-white/5 text-white/50 px-6 py-3 rounded-full text-[10px] font-black uppercase whitespace-nowrap">Flashcards</button>
+        <button onclick="showTab(event, 'mapas')" class="tab-btn bg-white/5 text-white/50 px-6 py-3 rounded-full text-[10px] font-black uppercase whitespace-nowrap">Mapas</button>
+        <button onclick="showTab(event, 'questoes')" class="tab-btn bg-white/5 text-white/50 px-6 py-3 rounded-full text-[10px] font-black uppercase whitespace-nowrap">Questões</button>
+        <button onclick="showTab(event, 'hacks')" class="tab-btn bg-white/5 text-white/50 px-6 py-3 rounded-full text-[10px] font-black uppercase whitespace-nowrap">Hacks</button>
+    </div>
+
+    <!-- MODO: FEYNMAN -->
+    <section id="feynman" class="tab-content active space-y-6">
+        <div class="glass border-2 border-blue-400">
+            <h2 class="text-2xl font-black mb-1 text-white font-alice tracking-tight">Método Feynman</h2>
+            <p class="text-[10px] text-slate-500 mb-8 uppercase tracking-widest">Simplificação Total</p>
+            
+            <p class="text-sm text-slate-300 leading-relaxed mb-10">Se você não consegue explicar para uma criança, você não entendeu. É sobre traduzir o difícil em óbvio.</p>
+            
+            <div class="space-y-6">
+                <div class="flex gap-4 items-start">
+                    <span class="step-badge mt-0.5">1</span>
+                    <p class="text-xs text-slate-300 leading-relaxed">Escolha um assunto que você deseja aprender e escreva o nome no topo de um papel.</p>
+                </div>
+                <div class="flex gap-4 items-start">
+                    <span class="step-badge mt-0.5">2</span>
+                    <p class="text-xs text-slate-300 leading-relaxed">Explique o assunto em termos simples, como se estivesse ensinando para uma criança ou alguém leigo.</p>
+                </div>
+                <div class="flex gap-4 items-start">
+                    <span class="step-badge mt-0.5">3</span>
+                    <p class="text-xs text-slate-300 leading-relaxed">Identifique as áreas onde você teve dificuldade na explicação e volte ao material original para preencher as lacunas.</p>
+                </div>
+                <div class="flex gap-4 items-start">
+                    <span class="step-badge mt-0.5">4</span>
+                    <p class="text-xs text-slate-300 leading-relaxed">Revise sua explicação, simplificando ainda mais a linguagem e usando analogias para tornar o conceito cristalino.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODO: POMODORO -->
+    <section id="pomodoro" class="tab-content space-y-6">
+        <div class="glass border-2 border-pink-500">
+            <h2 class="text-2xl font-black mb-1 text-white font-alice">Pomodoro</h2>
+            <p class="text-[10px] text-slate-500 mb-8 uppercase tracking-widest">Gestão de Tempo</p>
+            
+            <p class="text-sm text-slate-300 leading-relaxed mb-8">Foco total por 25-50 minutos, seguido de uma pausa obrigatória. O descanso regenera sua capacidade de concentração.</p>
+            
+            <div class="grid grid-cols-2 gap-4 mb-8">
+                <div class="bg-blue-500/10 p-5 rounded-2xl border border-blue-500/20 text-center">
+                    <span class="text-xl font-black text-white uppercase tracking-tighter">Foco</span>
+                    <p class="text-[10px] text-slate-400 mt-1 uppercase font-bold">25-50 Min</p>
+                </div>
+                <div class="bg-pink-500/10 p-5 rounded-2xl border border-pink-500/20 text-center">
+                    <span class="text-xl font-black text-pink-500 uppercase tracking-tighter">Pausa</span>
+                    <p class="text-[10px] text-slate-400 mt-1 uppercase font-bold">5-10 Min</p>
+                </div>
+            </div>
+
+            <div class="bg-black/30 p-5 rounded-2xl border border-white/5 text-center">
+                <p class="text-[10px] text-pink-400 font-bold uppercase italic tracking-widest">A cada 4 ciclos, faça uma pausa maior.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODO: FLASHCARDS -->
+    <section id="flashcards" class="tab-content space-y-6">
+        <div class="glass border-2 border-blue-400">
+            <h2 class="text-2xl font-black mb-1 text-white font-alice">Flashcards</h2>
+            <p class="text-[10px] text-slate-500 mb-8 uppercase tracking-widest">Recuperação Ativa</p>
+            <p class="text-sm text-slate-300 leading-relaxed mb-8">Pergunta na frente, resposta atrás. Simples e matador para decorar fórmulas e conceitos.</p>
+            <div class="bg-black/30 p-6 rounded-2xl text-center border border-white/5">
+                <p class="text-[10px] text-blue-400 font-black uppercase italic tracking-tighter">O cérebro aprende quando é<br>forçado a lembrar.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODO: MAPAS -->
+    <section id="mapas" class="tab-content space-y-6">
+        <div class="glass border-2 border-pink-500">
+            <h2 class="text-2xl font-black mb-1 text-white font-alice">Mapas Mentais</h2>
+            <p class="text-[10px] text-slate-500 mb-8 uppercase tracking-widest">Conexão Visual</p>
+            <p class="text-sm text-slate-300 mb-8">Ramificações que conectam o tema central a conceitos chave visualmente.</p>
+            <div class="bg-black/30 p-4 rounded-xl text-center border border-white/5">
+                <p class="text-[10px] text-slate-500 italic font-medium uppercase tracking-widest">Perfeito para revisões rápidas.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODO: QUESTÕES (ESTUDO REVERSO) -->
+    <section id="questoes" class="tab-content space-y-6">
+        <div class="glass border-2 border-blue-400">
+            <h2 class="text-2xl font-black mb-1 text-white font-alice tracking-tight">Estudo Reverso</h2>
+            <p class="text-[10px] text-slate-500 mb-8 uppercase tracking-widest">Método de Questões</p>
+            
+            <p class="text-sm text-slate-300 leading-relaxed mb-10">Não espere saber tudo para começar a praticar. Comece pelas questões e use-as para mapear o que você realmente precisa estudar.</p>
+            
+            <div class="space-y-6">
+                <div class="flex gap-4 items-start">
+                    <span class="step-badge mt-0.5">1</span>
+                    <p class="text-xs text-slate-300 leading-relaxed">Vá direto para as questões do tema, mesmo sem ter lido a teoria completa.</p>
+                </div>
+                <div class="flex gap-4 items-start">
+                    <span class="step-badge mt-0.5">2</span>
+                    <p class="text-xs text-slate-300 leading-relaxed">Ao errar ou ter dúvida, consulte a teoria especificamente sobre aquele ponto.</p>
+                </div>
+                <div class="flex gap-4 items-start">
+                    <span class="step-badge mt-0.5">3</span>
+                    <p class="text-xs text-slate-300 leading-relaxed">Anote o padrão das cobranças e os detalhes que as bancas costumam pedir.</p>
+                </div>
+                <div class="flex gap-4 items-start">
+                    <span class="step-badge mt-0.5">4</span>
+                    <p class="text-xs text-slate-300 leading-relaxed">Repita o processo até que o padrão do assunto esteja claro na sua mente.</p>
+                </div>
+            </div>
+
+            <div class="bg-blue-900/20 p-5 rounded-2xl border border-blue-500/20 text-center mt-10">
+                <p class="text-[10px] text-blue-400 font-black uppercase italic tracking-[0.15em]">O ERRO É O SEU GUIA.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODO: HACKS -->
+    <section id="hacks" class="tab-content space-y-6">
+        <div class="glass border-l-4 border-pink-500">
+            <h2 class="text-2xl font-black mb-1 text-white font-alice">Hacks de Performance</h2>
+            <p class="text-[10px] text-slate-500 mb-8 uppercase tracking-widest">Aceleradores</p>
+            
+            <div class="hack-item">
+                <h4 class="text-blue-400 font-bold text-[10px] uppercase mb-1">1. Regra dos 5 Segundos</h4>
+                <p class="text-[11px] text-slate-400 leading-relaxed">Sentiu o impulso de procrastinar? Conte 5-4-3-2-1 e <span class="text-pink-500 font-bold uppercase">AJA</span>. Mate a desculpa antes dela nascer.</p>
+            </div>
+
+            <div class="hack-item">
+                <h4 class="text-blue-400 font-bold text-[10px] uppercase mb-1">2. Lei de Parkinson</h4>
+                <p class="text-[11px] text-slate-400 leading-relaxed">O trabalho se expande no tempo que você dá. Prazos agressivos geram hiperfoco.</p>
+            </div>
+
+            <div class="hack-item">
+                <h4 class="text-blue-400 font-bold text-[10px] uppercase mb-1">3. Blocos de Tempo</h4>
+                <p class="text-[11px] text-slate-400 leading-relaxed">Tarefa única. Sem celular. Blindagem total do ambiente por tempo determinado.</p>
+            </div>
+
+            <div class="bg-pink-900/20 p-4 rounded-xl text-center mt-6 border border-pink-500/30">
+                <p class="text-[10px] text-pink-400 font-black italic uppercase tracking-widest">"Feito é melhor que perfeito."</p>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="fixed bottom-0 left-0 w-full p-8 bg-black/90 border-t border-white/5 text-center backdrop-blur-xl z-[100]">
+    <p class="text-[10px] text-blue-400 font-black uppercase tracking-[0.3em] mb-2 italic">Comece agora. Você é capaz.</p>
+    <p class="text-[8px] text-slate-600 uppercase tracking-widest font-bold">Assumindo o Protagonismo</p>
+</footer>
+
+<script>
+    function showTab(event, tabId) {
+        // Esconder conteúdos
+        document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+        // Mostrar selecionado
+        document.getElementById(tabId).classList.add('active');
         
-        <!-- Navegação -->
-        <div class="flex gap-3 mb-10 overflow-x-auto pb-4 no-scrollbar">
-            <button onclick="showTab('feynman')" class="tab-btn active bg-blue-600 text-white px-5 py-3 rounded-2xl text-[10px] font-black whitespace-nowrap shadow-xl">FEYNMAN</button>
-            <button onclick="showTab('pomodoro')" class="tab-btn bg-white/5 text-white/50 px-5 py-3 rounded-2xl text-[10px] font-black whitespace-nowrap">POMODORO</button>
-            <button onclick="showTab('flashcards')" class="tab-btn bg-white/5 text-white/50 px-5 py-3 rounded-2xl text-[10px] font-black whitespace-nowrap">FLASHCARDS</button>
-            <button onclick="showTab('mapas')" class="tab-btn bg-white/5 text-white/50 px-5 py-3 rounded-2xl text-[10px] font-black whitespace-nowrap">MAPAS</button>
-            <button onclick="showTab('questoes')" class="tab-btn bg-white/5 text-white/50 px-5 py-3 rounded-2xl text-[10px] font-black whitespace-nowrap">QUESTÕES</button>
-            <button onclick="showTab('hacks')" class="tab-btn bg-white/5 text-white/50 px-5 py-3 rounded-2xl text-[10px] font-black whitespace-nowrap">HACKS</button>
+        // Resetar botões
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.remove('btn-active');
+            btn.classList.add('bg-white/5', 'text-white/50');
+        });
+        
+        // Ativar botão clicado
+        event.currentTarget.classList.add('btn-active');
+        event.currentTarget.classList.remove('bg-white/5', 'text-white/50');
+    }
+
+    // Inicializar primeira aba como ativa visualmente
+    window.onload = () => {
+        const firstBtn = document.querySelector('.tab-btn');
+        if(firstBtn) firstBtn.classList.add('btn-active');
+    }
+</script>
+
+</body>
+</html>
+
+```            <button onclick="showTab('hacks')" class="tab-btn bg-white/5 text-white/50 px-5 py-3 rounded-2xl text-[10px] font-black whitespace-nowrap">HACKS</button>
             <button onclick="showTab('qr')" class="tab-btn bg-pink-600 text-white px-5 py-3 rounded-2xl text-[10px] font-black whitespace-nowrap">COMPARTILHAR</button>
         </div>
 
